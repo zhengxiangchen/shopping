@@ -20,8 +20,14 @@ Page({
     var that = this;
     var cartItems = wx.getStorageSync('cartItems') || [];
     if (cartItems.length > 0) {
+      var list = [];
+      for (var i = 0; i < cartItems.length; i++){
+        if (cartItems[i].selected){
+          list.push(cartItems[i]);
+        }
+      }
       that.setData({
-        orders: cartItems
+        orders: list
       })
     }
     

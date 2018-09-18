@@ -84,7 +84,15 @@ Page({
     let carts = this.data.carts;
     const selected = carts[index].selected;
     carts[index].selected = !selected;
+    wx.setStorageSync('cartItems', carts);
+    var selectAllStatus = true;
+    for (var i = 0; i < carts.length; i++){
+      if (!carts[i].selected){
+        selectAllStatus = false;
+      }
+    }
     this.setData({
+      selectAllStatus: selectAllStatus,
       carts: carts
     });
     this.getTotalPrice();
@@ -115,16 +123,29 @@ Page({
    */
   selectAll(e) {
     let selectAllStatus = this.data.selectAllStatus;
-    selectAllStatus = !selectAllStatus;
     let carts = this.data.carts;
 
-    for (let i = 0; i < carts.length; i++) {
-      carts[i].selected = selectAllStatus;
+    if (!selectAllStatus){
+      for (let i = 0; i < carts.length; i++) {
+        if (!carts[i].selected) {
+          carts[i].selected = true;
+        }
+      }
+      wx.setStorageSync('cartItems', carts);
+      this.setData({
+        selectAllStatus: !selectAllStatus,
+        carts: carts
+      });
+    }else{
+      for (let i = 0; i < carts.length; i++) {
+        carts[i].selected = false;
+      }
+      wx.setStorageSync('cartItems', carts);
+      this.setData({
+        selectAllStatus: !selectAllStatus,
+        carts: carts
+      });
     }
-    this.setData({
-      selectAllStatus: selectAllStatus,
-      carts: carts
-    });
     this.getTotalPrice();
   },
 

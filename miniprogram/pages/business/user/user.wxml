@@ -9,11 +9,15 @@
             <navigator url="/pages/business/address/address">地址管理</navigator>
         </view>
         <view wx:if="{{hasAddress}}">
-            <i-panel title="基础用法">
-              <i-input value="{{ address.name }}" title="收货人" disabled />
-              <i-input value="{{ address.phone }}" title="联系电话" disabled />
-              <i-input value="{{ address.detail }}" title="详细地址" disabled />
-            </i-panel>
+            <i-collapse>
+              <i-collapse-item title="我的地址" name="name1">
+                  <view slot="content">
+                      <i-input value="{{ address.name }}" title="收货人" disabled />
+                      <i-input value="{{ address.phone }}" title="联系电话" disabled />
+                      <i-input value="{{ address.detail }}" title="详细地址" disabled />
+                  </view>
+              </i-collapse-item> 
+          </i-collapse>
         </view>
     </view>
     <view class="orders-box">
