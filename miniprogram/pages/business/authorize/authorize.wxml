@@ -1,0 +1,9 @@
+<view class="page" style='margin-top:250rpx;'>
+    <view class="page__hd">
+        <view class="page__title" style='text-align:center;'>授权须知</view>
+        <view class="page__desc">感谢您使用本程序。当您开始使用本程序时，我们可能会对您的部分个人信息进行收集、使用和共享。</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <button class="weui-btn" type="primary" open-type='getUserInfo' bindgetuserinfo="getuserinfo">同意授权</button>
+    </view>
+</view>

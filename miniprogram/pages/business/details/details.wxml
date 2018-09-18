@@ -1,0 +1,36 @@
+<view class="main">
+    <view class="goods-box">
+        <image src="{{imgFullPath}}" class="goods-thumb"></image>
+        
+        <navigator open-type="switchTab" url="../cart/cart">
+            <view class="carts-icon {{scaleCart?'on':''}}">
+                <image src="/image/cart2.png"></image>
+                <text class="carts-icon-num" wx:if="{{hasCarts}}">{{totalNum}}</text>
+            </view>
+        </navigator>
+
+        <i-panel title="基础用法">
+            <view style="padding: 16px">
+                <i-input-number value="{{ num }}" min="1" max="100" bindchange="numberChange" />
+            </view>
+        </i-panel>
+        
+        <view class="goods-operation">
+            <text class="goods-to-cart" bindtap="addToCart">加入购物车</text>
+            <image src="/image/cart1.png"  class="goods-cart-img" bindtap="addToCart"></image>
+        </view>
+        <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
+        <view class="goods-title">{{goods.goodsName}}</view>
+        <view class="goods-price">￥ {{goods.goodsPrice}} 元</view>
+    </view>
+    <view class="goods-tab-box">
+        <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">商品详情</view>
+        <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">产品参数</view>
+        <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">售后保障</view>
+        <view class="goods-content">
+            <view wx:if="{{curIndex === 0}}">{{goods.goodsIntroduce}}</view>
+            <view wx:if="{{curIndex === 1}}">{{goods.goodsSpec}}</view>
+            <view wx:if="{{curIndex === 2}}">{{goods.goodsIntroduce}}</view>
+        </view>
+    </view>
+</view>

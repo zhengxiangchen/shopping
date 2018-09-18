@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "地址管理",
+    "enablePullDownRefresh": false,
+    "usingComponents": {
+      "i-input": "../../../dist/input/index",
+      "i-button": "../../../dist/button/index",
+      "i-message": "../../../dist/message/index",
+      "i-toast": "../../../dist/toast/index"
+    }
+}

@@ -1,0 +1,8 @@
+<i-message id="message" />
+<i-toast id="toast" />
+<i-panel title="基础用法">
+    <i-input value="{{ address.name }}" type="text" title="收货人" autofocus placeholder="名字" bind:change='bindName' />
+    <i-input value="{{ address.phone }}" type="number" title="联系电话" placeholder="请输入手机号" bind:change='bindPhone'/>
+    <i-input value="{{ address.detail }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" bind:change='bindDetail'/>
+    <i-button bind:click="saveAddress" type="success" shape="circle">保存地址信息</i-button>
+</i-panel>
