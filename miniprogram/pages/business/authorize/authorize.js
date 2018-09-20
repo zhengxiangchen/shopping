@@ -76,6 +76,7 @@ Page({
       //更新登录态
       wx.login({
       });
+      wx.setStorageSync("userName", e.detail.userInfo.nickName);
 
       // 调用云函数
       wx.cloud.callFunction({

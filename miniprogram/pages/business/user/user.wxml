@@ -5,19 +5,33 @@
         <text class="about">关于我们</text>
     </view>
     <view class="address-box">
-        <view class="address-manage">
-            <navigator url="/pages/business/address/address">地址管理</navigator>
+        <view class="address-manage" bindtap='addressManager'>
+            <!-- <navigator url="/pages/business/address/address">地址管理</navigator> -->
+            <text>地址管理</text>
         </view>
         <view wx:if="{{hasAddress}}">
+          <view wx:if="{{isDbAddress}}">
             <i-collapse>
               <i-collapse-item title="我的地址" name="name1">
                   <view slot="content">
-                      <i-input value="{{ address.name }}" title="收货人" disabled />
-                      <i-input value="{{ address.phone }}" title="联系电话" disabled />
-                      <i-input value="{{ address.detail }}" title="详细地址" disabled />
+                      <i-input value="{{address.name}}" title="收货人" disabled />
+                      <i-input value="{{address.phone}}" title="联系电话" disabled />
+                      <i-input value="{{address.detail}}" title="详细地址" disabled />
                   </view>
               </i-collapse-item> 
-          </i-collapse>
+            </i-collapse>
+          </view>
+          <view wx:else>
+            <i-collapse>
+              <i-collapse-item title="我的地址" name="name1">
+                  <view slot="content">
+                      <i-input value="{{address.userName}}" title="收货人" disabled />
+                      <i-input value="{{address.telNumber}}" title="联系电话" disabled />
+                      <i-input value="{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}" title="详细地址" disabled />
+                  </view>
+              </i-collapse-item> 
+            </i-collapse>
+          </view>
         </view>
     </view>
     <view class="orders-box">

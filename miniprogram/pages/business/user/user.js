@@ -8,6 +8,7 @@ Page({
   data: {
     orders: [],
     hasAddress: false,
+    isDbAddress:false,
     address: {}
   },
 
@@ -30,21 +31,29 @@ Page({
    */
   onShow: function () {
     var that = this;
-    //数据库--获取地址信息
-    db.collection('address').where({
-      _openid: app.globalData.openid // 填入当前用户 openid
-    }).get({
-      success: function (res) {
-        var addressList = res.data;
-        if (addressList.length > 0) {
-          that.setData({
-            address: addressList[0],
-            hasAddress: true
-          })
+    var address = wx.getStorageSync("address");
+    if(address == ""){
+      //数据库--获取地址信息
+      db.collection('address').where({
+        _openid: app.globalData.openid // 填入当前用户 openid
+      }).get({
+        success: function (res) {
+          var addressList = res.data;
+          if (addressList.length > 0) {
+            that.setData({
+              address: addressList[0],
+              hasAddress: true,
+              isDbAddress:true
+            })
+          }
         }
-      }
-    })
-    
+      })
+    }else{
+      that.setData({
+        address: address,
+        hasAddress: true
+      })
+    }
   },
 
   /**
@@ -80,5 +89,29 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  //地址管理
+  addressManager:function(){
+    var that = this;
+    wx.authorize({
+      scope: 'scope.address',
+      success:function(){
+        wx.chooseAddress({
+          success: (res) => {
+            wx.setStorageSync("address", res);
+            that.setData({
+              address:res,
+              isDbAddress:false
+            })
+          }
+        })
+      },
+      fail:function(){
+        wx.navigateTo({
+          url: '/pages/business/address/address',
+        })
+      }
+    })
   }
 })

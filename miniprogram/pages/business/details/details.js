@@ -98,7 +98,7 @@ Page({
     const that = this;
     const num = that.data.num;
     let total = that.data.totalNum;
-
+    
     that.setData({
       show: true
     })
@@ -155,6 +155,20 @@ Page({
     const index = parseInt(e.currentTarget.dataset.index);
     this.setData({
       curIndex: index
+    })
+  },
+
+  showImg:function(){
+    var that = this;
+    var imgs = [];
+    imgs.push(that.data.imgFullPath);
+    var imglist = that.data.goods.goodsImgs;
+    for (var i = 0; i < imglist.length; i++){
+      var fullPath = that.data.imgStaticPath + imglist[i];
+      imgs.push(fullPath);
+    }
+    wx.previewImage({
+      urls: imgs,
     })
   }
 })

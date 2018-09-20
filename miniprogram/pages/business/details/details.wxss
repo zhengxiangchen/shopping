@@ -10,7 +10,7 @@
 .goods-box .goods-thumb{
     width: 300rpx;
     height: 300rpx;
-    margin: 35rpx 0 125rpx;
+    margin: 35rpx 0 110rpx;
 }
 
 .to-carts-icon{
@@ -106,7 +106,6 @@
 }
 .goods-to-cart{
     width: 210rpx;
-    padding-right: 75rpx;
 }
 .goods-cart-img{
     position: absolute;
@@ -143,4 +142,5 @@
 }
 .goods-content{
     padding: 40rpx;
+    text-align: center;
 }

@@ -81,6 +81,7 @@
     padding-left: 30rpx;
     box-sizing: border-box;
     color: #a55350;
+    overflow: hidden;
 }
 .orders-footer .orders-footer-btn{
     display: inline-block;
