@@ -1,5 +1,5 @@
 <i-notice-bar icon="systemprompt" closable>
-    通知：小程序开发中
+    通知：国庆启程香港,澳门
 </i-notice-bar>
 <view class="main">
     <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">

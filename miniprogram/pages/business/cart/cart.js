@@ -37,6 +37,11 @@ Page({
         carts: cartItems
       })
       that.getTotalPrice();
+    }else{
+      that.setData({
+        hasList: false,
+        carts: cartItems
+      })
     }
     
   },

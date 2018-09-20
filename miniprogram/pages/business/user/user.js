@@ -54,6 +54,41 @@ Page({
         hasAddress: true
       })
     }
+
+    db.collection('order').where({
+      _openid: app.globalData.openid // 填入当前用户 openid
+    }).get({
+      success: function (res) {
+        var list = res.data;
+        var orders = [];
+        for(var i = 0; i < list.length; i++){
+          var oneOrder = {};
+          var name = "";
+          var num = "";
+          oneOrder.id = list[i]._id;
+          oneOrder.createTime = list[i].createTime;
+          for (var j = 0; j < list[i].goods.length; j++){
+            if (name.length > 0){
+              name = name + ",";
+            }
+            if (num.length > 0) {
+              num = num + ",";
+            }
+            name = name + list[i].goods[j].goodsName;
+            num = num + list[i].goods[j].num;
+          }
+          oneOrder.name = name;
+          oneOrder.num = num;
+          oneOrder.money = list[i].money;
+          orders.push(oneOrder);
+        }
+
+        that.setData({
+          orders: orders
+        })
+
+      }
+    })
   },
 
   /**

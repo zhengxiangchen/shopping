@@ -1,5 +1,8 @@
 <i-toast id="toast" />
 <i-message id="message" />
+<i-notice-bar icon="systemprompt" closable>
+    通知：点击下单后无需付款,客服会微信确认订单。
+</i-notice-bar>
 <view class="main">
     <view wx:if="{{hasAddress}}" class="orders-address" bindtap='addressManager'>
       <view wx:if="{{isDbAddress}}">
@@ -30,7 +33,7 @@
         <view class="orders-footer-total">付款合计：￥{{total}}</view>
         <!-- <view class="orders-footer-btn" bindtap="toPay">去付款</view> -->
         <form bind:submit="toPay" report-submit="true" class="orders-footer-btn">
-            <button formType="submit" class="orders-footer-btn" style='height:53px;'>去付款</button>
+            <button formType="submit" class="orders-footer-btn" style='height:53px;'>去下单</button>
         </form>
     </view>
 </view>
