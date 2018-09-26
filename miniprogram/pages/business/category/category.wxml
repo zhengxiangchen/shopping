@@ -15,7 +15,7 @@
           </view>
           <view class="product">
             <view class="product-list" wx:for="{{detail}}" wx:key="index" wx:for-item="val">
-              <navigator url="../details/details?goodsId={{val._id}}">
+              <navigator url="../list/list?goodsSecondTypeId={{val._id}}">
                 <image src="{{imgStaticPath}}{{val.indexImg}}"></image>
                 <view class="classname"><text>{{val.name}}</text></view>
               </navigator>
