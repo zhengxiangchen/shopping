@@ -10,9 +10,9 @@ Page({
     detail: [],
     curIndex: 0,
     isScroll: false,
-    toView: 'W6EY0O9Ghf6stBXU',
-    banner: 'cloud://yun-tes-f1b43d.7975-yun-tes-f1b43d/banner/ruye.jpg',
-    cate: '乳液'
+    toView: 'W6svyJKURGseS-ad',
+    banner: 'cloud://yun-tes-f1b43d.7975-yun-tes-f1b43d/banner/hufu.jpg',
+    cate: '护肤'
   },
 
   /**
@@ -29,8 +29,8 @@ Page({
       }
     })
 
-    db.collection('goods').where({
-      goodsTypeId: that.data.toView
+    db.collection('goodsSecondType').where({
+      firstTypeId: that.data.toView
     }).get({
       success: function (res) {
         that.setData({
@@ -102,8 +102,8 @@ Page({
       }
     })
 
-    db.collection('goods').where({
-      goodsTypeId: e.target.dataset.id
+    db.collection('goodsSecondType').where({
+      firstTypeId: e.target.dataset.id
     }).get({
       success: function (res) {
         that.setData({

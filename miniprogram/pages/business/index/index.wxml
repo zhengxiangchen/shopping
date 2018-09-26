@@ -9,26 +9,6 @@
             </swiper-item>
         </block>
     </swiper>
-    <view class="selected">
-        <view class="select-title"><text>精选主题</text></view>
-        <view class="select-top">
-            <view class="select-top-small">
-                <navigator url="../list/list">
-                    <image src="/image/s1.png"></image>
-                </navigator>
-            </view>
-            <view class="select-top-small">
-                <navigator url="../list/list">
-                    <image src="/image/s2.png"></image>
-                </navigator>
-            </view>
-        </view>
-        <view class="select-bottom">
-            <navigator url="../list/list">
-                <image src="/image/s3.png"></image>
-            </navigator>
-        </view>
-    </view>
     <view class="newest">
         <view class="newest-title"><text>最近新品</text></view>
         <view class="newest-box">
