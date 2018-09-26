@@ -20,19 +20,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var cartItems = wx.getStorageSync('cartItems') || [];
-    if (cartItems.length > 0) {
-      var list = [];
-      for (var i = 0; i < cartItems.length; i++){
-        if (cartItems[i].selected){
-          list.push(cartItems[i]);
-        }
-      }
-      that.setData({
-        orders: list
-      })
-    }
     
   },
 
@@ -69,6 +56,19 @@ Page({
       that.setData({
         address: address,
         hasAddress: true
+      })
+    }
+
+    var cartItems = wx.getStorageSync('cartItems') || [];
+    if (cartItems.length > 0) {
+      var list = [];
+      for (var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].selected) {
+          list.push(cartItems[i]);
+        }
+      }
+      that.setData({
+        orders: list
       })
     }
     
@@ -149,7 +149,8 @@ Page({
         nickName: nickName,
         goods: goods,
         address: address,
-        money: money
+        money: money,
+        createTime: db.serverDate()
       },
       success: function (res) {
         var orderId = res._id;
@@ -232,6 +233,12 @@ Page({
             content: '提交成功',
             type: 'success'
           });
+          wx.removeStorageSync("cartItems");
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/business/user/user',
+            })
+          }, 2000);
         }else{
           console.log(res.data);
           $Message({

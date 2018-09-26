@@ -6,7 +6,6 @@
     </view>
     <view class="address-box">
         <view class="address-manage" bindtap='addressManager'>
-            <!-- <navigator url="/pages/business/address/address">地址管理</navigator> -->
             <text>地址管理</text>
         </view>
         <view wx:if="{{hasAddress}}">
@@ -36,18 +35,16 @@
     </view>
     <view class="orders-box">
         <view class="orders">我的订单</view>
-        <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-            <view class="orders-number">订单编号：{{item.number}}</view>
-            <view class="orders-detail">
-                <image src="{{item.thumb}}"></image>
-                <view class="">{{item.name}}</view>
-                <view class="">{{item.count}}</view>
-                <text class="orders-status">{{item.status}}</text>
+          <i-collapse accordion>
+            <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
+              <i-collapse-item title="订单编号:{{item.id}}" name="{{item.id}}" style="line-height: 70rpx;">
+                  <view slot="content">
+                      <i-input value="{{item.name}}" title="商品名称" disabled />
+                      <i-input value="{{item.num}}" title="商品数量" disabled />
+                      <i-input value="{{item.money}}" title="金额" disabled />
+                  </view>
+              </i-collapse-item> 
             </view>
-            <view class="orders-footer">
-                <text>实付：￥{{item.money}}</text>
-                <button size="mini" class="orders-btn" bindtap="payOrders">付款</button>
-            </view>
+          </i-collapse>
         </view>
-    </view>
 </view>
