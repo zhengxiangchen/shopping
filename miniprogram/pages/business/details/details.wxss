@@ -8,8 +8,8 @@
     border-bottom: 30rpx solid #ededed;
 }
 .goods-box .goods-thumb{
-    width: 300rpx;
-    height: 300rpx;
+    width: 350rpx;
+    height: 350rpx;
     margin: 35rpx 0 110rpx;
 }
 

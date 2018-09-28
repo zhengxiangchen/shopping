@@ -1,3 +1,5 @@
+<i-action-sheet visible="{{visible}}" actions="{{actions}}" show-cancel bind:cancel="handleCancel" bind:click="selectSpec"/>
+<i-message id="message" />
 <view class="main">
     <view class="goods-box">
         <image src="{{imgFullPath}}" class="goods-thumb" bindtap='showImg'></image>
@@ -14,6 +16,15 @@
                 <i-input-number value="{{ num }}" min="1" max="100" bindchange="numberChange" />
             </view>
         </i-panel>
+
+        <i-panel title="基础用法">
+          <view wx:if="{{haveSpec}}" style="padding-bottom: 16px">
+            规格：<i-tag class="i-tags" name="{{specName}}" color="blue" bindchange="showSpec" checkable="true">{{specName}}</i-tag>
+          </view>
+          <view wx:else>
+            <i-button bind:click="showSpec" type="ghost" shape="circle" size="small" inline>选择规格</i-button>
+          </view>
+        </i-panel>
         
         <view class="goods-operation">
             <text class="goods-to-cart" bindtap="addToCart">加入购物车</text>
@@ -21,16 +32,22 @@
         </view>
         <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
         <view class="goods-title">{{goods.goodsName}}</view>
-        <view class="goods-price">￥ {{goods.goodsPrice}} 元</view>
+        <view class="goods-price">￥ {{goodsPrice}} 元</view>
     </view>
     <view class="goods-tab-box">
         <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">商品详情</view>
         <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">产品参数</view>
         <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">香港专柜实拍</view>
         <view class="goods-content">
-            <view wx:if="{{curIndex === 0}}"><image src="{{imgFullPath}}" class="goods-thumb"></image></view>
-            <view wx:if="{{curIndex === 1}}">{{goods.goodsSpec}}</view>
-            <view wx:if="{{curIndex === 2}}">{{goods.goodsIntroduce}}</view>
+            <view wx:if="{{curIndex === 0}}" wx:for="{{goods.goodsIntroduceImgs}}" wx:key="index">
+              <image src="{{imgStaticPath}}{{item}}" mode="widthFix"></image>
+            </view>
+            <view wx:if="{{curIndex === 1}}">
+              <image src="{{imgStaticPath}}{{goods.goodsIntroduce}}" mode="widthFix"></image>
+            </view>
+            <view wx:if="{{curIndex === 2}}" wx:for="{{goods.goodsRealImgs}}" wx:key="index">
+              <image src="{{imgStaticPath}}{{item}}" mode="widthFix"></image>
+            </view>
         </view>
     </view>
 </view>

@@ -74,7 +74,7 @@ Page({
             if (num.length > 0) {
               num = num + ",";
             }
-            name = name + list[i].goods[j].goodsName;
+            name = name + list[i].goods[j].goodsName + ":" + list[i].goods[j].spec;
             num = num + list[i].goods[j].num;
           }
           oneOrder.name = name;

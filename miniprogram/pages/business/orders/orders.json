@@ -3,6 +3,7 @@
   "usingComponents": {
     "i-toast": "../../../dist/toast/index",
     "i-message": "../../../dist/message/index",
-    "i-notice-bar": "../../../dist/notice-bar/index"
+    "i-notice-bar": "../../../dist/notice-bar/index",
+    "i-tag": "../../../dist/tag/index"
   }
 }

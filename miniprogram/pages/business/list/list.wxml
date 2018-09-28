@@ -8,7 +8,7 @@
             <navigator url="../details/details?goodsId={{item._id}}">
                 <image src="{{imgStaticPath}}{{item.goodsIndexImg}}"></image>
                 <view class="newest-text"><text>{{item.goodsName}}</text></view>
-                <view class="newest-text"><text>￥ {{item.goodsPrice}}</text></view>
+                <view class="newest-text"><text>￥ {{item.goodsPrice[0]}}</text></view>
             </navigator>
         </view>
     </view>

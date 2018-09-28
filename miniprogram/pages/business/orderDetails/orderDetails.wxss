@@ -1,0 +1,14 @@
+@import '../common/common.wxss';
+
+.orders-address{
+    position: relative;
+    padding: 20rpx 50rpx 20rpx 35rpx;
+    font-size: 14px;
+    line-height: 25px;
+    border-bottom: 20rpx solid #ededed;
+    color: #adadad;
+}
+.orders-address-name{
+    display: inline-block;
+    width: 300rpx;
+}

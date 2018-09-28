@@ -1,0 +1,22 @@
+<i-notice-bar>
+  订单金额:{{money}}元
+</i-notice-bar>
+<i-notice-bar>
+  下单时间:{{createTime}}
+</i-notice-bar>
+<view class="main">
+  <view class="orders-address">
+    <text class="orders-address-name">收货人: {{address.userName}}</text>
+    <text class="orders-address-phone">联系电话: {{address.telNumber}}</text>
+    <view class="orders-address-detail">
+      详细地址: {{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}
+    </view>
+  </view>
+
+  <view wx:for="{{goods}}" wx:key="index">
+    <i-card title="{{item.goodsName}}{{item.spec}}" full="true" extra="单价：{{item.goodsPrice}}元" thumb="{{item.goodsIndexImg}}">
+      <view slot="content">数量：{{item.num}}</view>
+      <view slot="footer">总计：{{item.num * item.goodsPrice}}元</view>
+    </i-card>
+  </view>
+</view>

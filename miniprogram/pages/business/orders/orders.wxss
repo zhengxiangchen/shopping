@@ -62,9 +62,6 @@
     width: 180rpx;
     height: 180rpx;
 }
-.orders-list view{
-    line-height: 60rpx;
-}
 
 .orders-footer{
     position: fixed;

@@ -27,7 +27,6 @@
 .cart-list .cart-pro-name{
     display: inline-block;
     width: 300rpx;
-    height: 105rpx;
     line-height: 50rpx;
     overflow: hidden;
 }

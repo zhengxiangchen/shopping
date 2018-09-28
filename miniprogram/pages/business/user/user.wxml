@@ -35,7 +35,12 @@
     </view>
     <view class="orders-box">
         <view class="orders">我的订单</view>
-          <i-collapse accordion>
+          <i-cell-group>
+            <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
+               <i-cell title="订单编号:{{item.id}}" is-link url="/pages/business/orderDetails/orderDetails?id={{item.id}}"></i-cell>
+            </view>
+          </i-cell-group>
+          <!-- <i-collapse>
             <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
               <i-collapse-item title="订单编号:{{item.id}}" name="{{item.id}}" style="line-height: 70rpx;">
                   <view slot="content">
@@ -45,6 +50,6 @@
                   </view>
               </i-collapse-item> 
             </view>
-          </i-collapse>
+          </i-collapse> -->
         </view>
 </view>

@@ -210,7 +210,7 @@ Page({
       if (goodsNumber.length > 0) {
         goodsNumber = goodsNumber + ",";
       }
-      goodsName = goodsName + goods[i].goodsName;
+      goodsName = goodsName + goods[i].goodsName + ":" + goods[i].spec;
       goodsNumber = goodsNumber + goods[i].num;
     }
     wx.request({
