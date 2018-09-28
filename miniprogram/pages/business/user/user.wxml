@@ -1,8 +1,11 @@
+<i-modal title="美女店家微信号" visible="{{visible}}" actions="{{actions}}" bind:click="handleClick">
+    <view>{{wxNumber}}</view>
+</i-modal>
 <view class="main">
     <view class="header">
         <open-data type="userAvatarUrl" class="thumb"></open-data>
         <open-data type="userNickName" class="nickname"></open-data>
-        <text class="about">关于我们</text>
+        <text class="about" bindtap='showWe'>关于我们</text>
     </view>
     <view class="address-box">
         <view class="address-manage" bindtap='addressManager'>

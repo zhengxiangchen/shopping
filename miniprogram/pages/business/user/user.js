@@ -1,4 +1,4 @@
-const db = wx.cloud.database()
+const db = wx.cloud.database();
 const app = getApp();
 Page({
 
@@ -9,7 +9,20 @@ Page({
     orders: [],
     hasAddress: false,
     isDbAddress:false,
-    address: {}
+    address: {},
+
+    visible: false,
+    actions: [
+      {
+        name: '复制',
+        color: '#19be6b',
+        icon: 'like_fill'
+      },
+      {
+        name: '取消'
+      }
+    ],
+    wxNumber: "Jennifer_wsq"
   },
 
   /**
@@ -148,5 +161,26 @@ Page({
         })
       }
     })
-  }
+  },
+
+  showWe:function(){
+    this.setData({
+      visible: true
+    });
+  },
+
+
+  handleClick({ detail }) {
+    var that = this;
+    const index = detail.index;
+    if (index === 0) {
+      wx.setClipboardData({
+        data: that.data.wxNumber,
+      })
+    }
+
+    that.setData({
+      visible: false
+    });
+  },
 })

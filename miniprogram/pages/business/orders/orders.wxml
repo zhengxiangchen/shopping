@@ -28,7 +28,12 @@
             <view class="orders-pro-price">￥{{item.goodsPrice}}</view>
             <view class="orders-count-num">×{{item.num}}</view>
         </view>
+        <i-panel>
+            <i-input value="" title="备注" placeholder="请填写您的微信号或手机号" bind:change='bindWxNumber'/>
+        </i-panel>
     </view>
+
+    
 
     <view class="orders-footer">
         <view class="orders-footer-total">付款合计：￥{{total}}</view>

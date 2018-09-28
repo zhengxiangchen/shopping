@@ -12,7 +12,8 @@ Page({
     hasAddress: false,
     isDbAddress:false,
     total: 0,
-    orders: []
+    orders: [],
+    wxNumber:"",
     
   },
 
@@ -133,6 +134,14 @@ Page({
       return;
     }
 
+    var wxNumber = that.data.wxNumber;
+    if (wxNumber.length <= 0){
+      $Toast({
+        content: '请填写您的微信号!'
+      });
+      return;
+    }
+
     wx.showLoading({
       title: '提交中...',
     })
@@ -155,7 +164,7 @@ Page({
       success: function (res) {
         var orderId = res._id;
         //发送通知给店主
-        that.sendTemplateMessage(formid, app.globalData.openid, orderId, goods, money, address);
+        that.sendTemplateMessage(formid, app.globalData.openid, orderId, goods, money, address, that.data.wxNumber);
       },
       fail: console.error
     })
@@ -187,7 +196,7 @@ Page({
   },
 
 
-  sendTemplateMessage: function (formid, openid, orderId, goods, money, address){
+  sendTemplateMessage: function (formid, openid, orderId, goods, money, address, wxNumber){
     //订单号
     var orderId = orderId;
     //金额
@@ -198,6 +207,8 @@ Page({
     var phone = address.telNumber;
     //收货地址
     var addressMsg = address.provinceName + address.cityName + address.countyName + address.detailInfo;
+    //微信号
+    var wxNumber = wxNumber;
 
     //商品名称
     var goodsName = "";
@@ -224,7 +235,8 @@ Page({
         phone: phone,
         addressMsg: addressMsg,
         goodsName: goodsName,
-        goodsNumber: goodsNumber
+        goodsNumber: goodsNumber,
+        wxNumber: wxNumber
       },
       success:function(res){
         wx.hideLoading();
@@ -248,6 +260,12 @@ Page({
         }  
       }
     })
+  },
 
-  }
+
+  bindWxNumber: function (e) {
+    this.setData({
+      wxNumber: e.detail.detail.value
+    })
+  },
 })
