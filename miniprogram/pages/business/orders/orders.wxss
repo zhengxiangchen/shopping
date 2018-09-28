@@ -71,6 +71,7 @@
     height: 95rpx;
     line-height: 95rpx;
     border-top: 1rpx solid #ededed;
+    background: #fff;
 }
 .orders-footer .orders-footer-total{
     display: inline-block;

@@ -14,8 +14,8 @@
   </view>
 
   <view wx:for="{{goods}}" wx:key="index">
-    <i-card title="{{item.goodsName}}{{item.spec}}" full="true" extra="单价：{{item.goodsPrice}}元" thumb="{{item.goodsIndexImg}}">
-      <view slot="content">数量：{{item.num}}</view>
+    <i-card title="{{item.goodsName}} * {{item.num}}" full="true" extra="单价:{{item.goodsPrice}}元" thumb="{{item.goodsIndexImg}}">
+      <view slot="content">规格：{{item.spec}}</view>
       <view slot="footer">总计：{{item.num * item.goodsPrice}}元</view>
     </i-card>
   </view>
