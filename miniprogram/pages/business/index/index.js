@@ -36,7 +36,7 @@ Page({
     })
 
 
-    db.collection('goods').get({
+    db.collection('goods').orderBy('_id', 'desc').orderBy('goodsName', 'desc').limit(6).get({
       success: function (res) {
         var list = res.data;
         that.setData({
