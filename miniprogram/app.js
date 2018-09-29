@@ -5,7 +5,9 @@ App({
    */
   onLaunch: function () {
     if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
+      wx.showToast({
+        title: '请更新微信版本',
+      })
     } else {
 
       wx.cloud.init({
@@ -21,6 +23,9 @@ App({
    * 当小程序启动，或从后台进入前台显示，会触发 onShow
    */
   onShow: function (options) {
+    wx.cloud.init({
+      traceUser: true,
+    });
     
   },
 

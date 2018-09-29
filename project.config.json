@@ -10,7 +10,7 @@
 	},
 	"appid": "wx00876e14de5f0ef5",
 	"projectname": "TestYun",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.0",
 	"condition": {
 		"search": {
 			"current": -1,
