@@ -11,6 +11,8 @@ Page({
     isDbAddress:false,
     address: {},
 
+    isAdmin:false,//用于判断是否是店主本人
+
     visible: false,
     actions: [
       {
@@ -29,6 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var openid = app.globalData.openid;
+    if (openid == 'oDoIC0XEE-mz9G2Koj5Wem2uzajA' || openid == 'oDoIC0cnxdzY7fEKYJszf545xiO4'){
+      that.setData({
+        isAdmin:true
+      })
+    }
 
   },
 

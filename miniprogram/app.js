@@ -23,9 +23,6 @@ App({
    * 当小程序启动，或从后台进入前台显示，会触发 onShow
    */
   onShow: function (options) {
-    wx.cloud.init({
-      traceUser: true,
-    });
     
   },
 
@@ -48,6 +45,7 @@ App({
   },
 
   login: function () {
+    const db = wx.cloud.database();
     var that = this;
     wx.checkSession({
       success: function () {
@@ -60,6 +58,21 @@ App({
           success: res => {
             console.log('[云函数] [login] user openid: ', res.result.openid);
             that.globalData.openid = res.result.openid;
+            //用户之前肯定登录过则云数据库有该用户信息,直接更新登录时间即可
+            db.collection('user').where({
+              _openid: that.globalData.openid // 填入当前用户 openid
+            }).get({
+              success: function (res) {
+                var id = res.data[0]._id;
+                db.collection('user').doc(id).update({
+                  data: {
+                    loginTime: db.serverDate()
+                  },
+                  success: console.log,
+                  fail: console.error
+                })
+              }
+            })
           },
           fail: err => {
             console.error('[云函数] [login] 调用失败', err)
@@ -77,6 +90,5 @@ App({
         })
       }
     })
-
   }
 })

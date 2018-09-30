@@ -1,0 +1,4 @@
+<view wx:for="{{users}}" wx:key="index">
+  <i-card title="{{item.nickName}}" full extra="{{item.city}}" thumb="{{item.avatarUrl}}" i-class="card-demo" 
+  bindtap="card" data-openid="{{item._openid}}"></i-card>
+</view>

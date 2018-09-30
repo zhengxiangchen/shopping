@@ -37,22 +37,21 @@
         </view>
     </view>
     <view class="orders-box">
+      <view wx:if="{{isAdmin}}">
+        <view class="orders">我是店主</view>
+        <i-cell-group>
+          <i-cell title="登录用户" is-link url="/pages/business/loginUserInfo/loginUserInfo"></i-cell>
+          <i-cell title="全部订单" is-link url="/pages/business/haveOrderUsers/haveOrderUsers"></i-cell>
+        </i-cell-group>
+      </view>
+
+      <view wx:else>
         <view class="orders">我的订单</view>
-          <i-cell-group>
-            <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
-               <i-cell title="订单编号:{{item.id}}" is-link url="/pages/business/orderDetails/orderDetails?id={{item.id}}"></i-cell>
-            </view>
-          </i-cell-group>
-          <!-- <i-collapse>
-            <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
-              <i-collapse-item title="订单编号:{{item.id}}" name="{{item.id}}" style="line-height: 70rpx;">
-                  <view slot="content">
-                      <i-input value="{{item.name}}" title="商品名称" disabled />
-                      <i-input value="{{item.num}}" title="商品数量" disabled />
-                      <i-input value="{{item.money}}" title="金额" disabled />
-                  </view>
-              </i-collapse-item> 
-            </view>
-          </i-collapse> -->
-        </view>
+        <i-cell-group>
+          <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
+              <i-cell title="订单编号:{{item.id}}" is-link url="/pages/business/orderDetails/orderDetails?id={{item.id}}"></i-cell>
+          </view>
+        </i-cell-group>
+      </view>
+    </view>
 </view>

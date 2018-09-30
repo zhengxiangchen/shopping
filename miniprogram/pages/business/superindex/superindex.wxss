@@ -1,0 +1,7 @@
+.demo-row{
+    margin-bottom: 5px;
+}
+.demo-col{
+    padding: 10px 0;
+    text-align: center;
+}

@@ -1,0 +1,38 @@
+<i-steps current="{{current}}">
+    <i-step>
+        <view slot="title">
+              购物说明一
+        </view>
+    </i-step>
+    <i-step>
+        <view slot="title">
+            购物说明二
+        </view>
+    </i-step>
+    <i-step>
+        <view slot="title">
+            购物说明三
+        </view>
+    </i-step>
+</i-steps>
+
+<i-row i-class="demo-row" wx:if="{{show[0]}}">
+    <i-col span="24" i-class="demo-col">
+      <image mode='widthFix' src='/image/show1.jpg' style='margin-top:50rpx;margin-bottom:50rpx;'></image>
+    </i-col>
+</i-row>
+
+<i-row i-class="demo-row" wx:if="{{show[1]}}">
+    <i-col span="24" i-class="demo-col">
+      <image mode='widthFix' src='/image/show2.jpg' style='margin-top:50rpx;margin-bottom:50rpx;'></image>
+    </i-col>
+</i-row>
+
+<i-row i-class="demo-row" wx:if="{{show[2]}}">
+    <i-col span="24" i-class="demo-col">
+      <image mode='widthFix' src='/image/show3.jpg' style='margin-top:50rpx;margin-bottom:50rpx;'></image>
+    </i-col>
+</i-row>
+
+
+<i-button bindclick="handleClick">朕已阅</i-button>

@@ -1,18 +1,15 @@
+// pages/business/loginUserInfo/loginUserInfo.js
+var app = getApp();
 const db = wx.cloud.database();
-const app = getApp(); 
+var util = require('../../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgStaticPath : "cloud://yun-tes-f1b43d.7975-yun-tes-f1b43d",
-    imgUrls: [],
-    goods:[],
-    indicatorDots: false,
-    autoplay: false,
-    interval: 3000,
-    duration: 800,
+    users:[]
+
   },
 
   /**
@@ -20,86 +17,69 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
-    //从云数据库中获取轮播图片
-    db.collection('swiperImg').get({
+    db.collection('user').orderBy('loginTime', 'desc').get({
       success: function (res) {
         var list = res.data;
-        var pathList = [];
+        var users = [];
         for(var i = 0; i < list.length; i++){
-          pathList.push(that.data.imgStaticPath + list[i].imgPath);
+          var user = list[i];
+          user.loginTime = util.formatTime(user.loginTime);
+          users.push(user);
         }
         that.setData({
-          imgUrls: pathList
+          users: users
         })
       }
     })
 
-
-    db.collection('goods').orderBy('_id', 'desc').orderBy('goodsName', 'desc').limit(6).get({
-      success: function (res) {
-        var list = res.data;
-        that.setData({
-          goods: list
-        })
-      }
-    })
-
-    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
-  },
 
-  explain:function(){
-    wx.navigateTo({
-      url: '/pages/business/superindex/superindex',
-    })
   }
 })

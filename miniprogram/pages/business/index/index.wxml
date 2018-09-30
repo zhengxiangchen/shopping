@@ -1,5 +1,5 @@
-<i-notice-bar icon="systemprompt" closable>
-    通知：国庆启程香港,澳门
+<i-notice-bar icon="systemprompt" loop>
+    通知：小程序内容为店主自行整理仅供参考，如有更正之处请联系店主【wx：Jennifer_wsq】
 </i-notice-bar>
 <view class="main">
     <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
@@ -24,3 +24,4 @@
         </view>
     </view>
 </view>
+<i-load-more tip="购物说明" loading="{{ false }}" bindtap="explain"/>

@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/business/index/index",
+    "pages/business/superindex/superindex",
     "pages/business/address/address",
     "pages/business/cart/cart",
     "pages/business/details/details",
@@ -10,7 +11,10 @@
     "pages/business/user/user",
     "pages/business/category/category",
     "pages/business/authorize/authorize",
-    "pages/business/orderDetails/orderDetails"
+    "pages/business/orderDetails/orderDetails",
+    "pages/business/loginUserInfo/loginUserInfo",
+    "pages/business/haveOrderUsers/haveOrderUsers",
+    "pages/business/userOrders/userOrders"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

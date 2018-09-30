@@ -1,0 +1,11 @@
+<view wx:for="{{users}}" wx:key="index">
+  <i-card title="{{item.nickName}}" full extra="{{item.city}}" thumb="{{item.avatarUrl}}" i-class="card-demo">
+      <view slot="content" wx:if="{{item.gender == 1}}">
+        男
+      </view>
+      <view slot="content" wx:else>
+        女
+      </view>
+      <view slot="footer">{{item.loginTime}}</view>
+  </i-card>
+</view>
