@@ -35,4 +35,4 @@
 </i-row>
 
 
-<i-button bindclick="handleClick">朕已阅</i-button>
+<i-button type="primary" bindclick="handleClick">朕已阅</i-button>
