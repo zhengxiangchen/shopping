@@ -44,8 +44,8 @@ Page({
         }
         that.setData({
           goods:res.data,
-          swiperImgs: swiperImgs
-          // imgFullPath: that.data.imgStaticPath + res.data.goodsIndexImg
+          swiperImgs: swiperImgs,
+          imgFullPath: that.data.imgStaticPath + res.data.goodsIndexImg
         })
         var actions = [];
         var length = that.data.goods.goodsSpec.length;
