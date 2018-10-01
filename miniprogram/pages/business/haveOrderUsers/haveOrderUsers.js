@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    
+    var users = [];
     db.collection('order').get({
       success: function (res) {
         var orderList = res.data;
@@ -27,13 +27,14 @@ Page({
             userOpenIdList.push(order._openid);
           }
 
+          userOpenIdList = that.uniqueList(userOpenIdList);
+
           for (var i = 0; i < userOpenIdList.length; i++){
             var openid = userOpenIdList[i];
             db.collection('user').where({
               _openid: openid
             }).get({
               success: function (res) {
-                var users = [];
                 var user = res.data[0];
                 user.loginTime = util.formatTime(user.loginTime);
                 users.push(user);
@@ -105,5 +106,18 @@ Page({
     wx.navigateTo({
       url: '/pages/business/userOrders/userOrders?openid=' + openid,
     })
+  },
+
+  //list去重
+  uniqueList: function (array) {
+    var res = [];
+    var json = {};
+    for (var i = 0; i < array.length; i++) {
+      if (!json[array[i]]) {
+        res.push(array[i]);
+        json[array[i]] = 1;
+      }
+    }
+    return res;
   }
 })

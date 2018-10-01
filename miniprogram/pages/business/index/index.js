@@ -13,6 +13,11 @@ Page({
     autoplay: false,
     interval: 3000,
     duration: 800,
+
+    inputShowed: false,
+    inputVal: "",
+    searchType:[],
+    searchGoods:[]
   },
 
   /**
@@ -97,9 +102,68 @@ Page({
     
   },
 
+  //打开购物说明页
   explain:function(){
     wx.navigateTo({
       url: '/pages/business/superindex/superindex',
     })
+  },
+
+  //点击搜索框触发
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  //点击取消触发
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false,
+      searchType: [],
+      searchGoods: []
+    });
+  },
+  //点击小叉触发
+  clearInput: function () {
+    this.setData({
+      inputVal: "",
+      searchType: [],
+      searchGoods: []
+    });
+  },
+  //输入信息触发
+  inputTyping: function (e) {
+    var that = this;
+    var text = e.detail.value;
+
+    db.collection('goodsSecondType').where({
+      name: text
+    }).get({
+      success: function (res) {
+        var list = res.data;
+        if (list.length > 0){
+          that.setData({
+            searchType: list
+          })
+        }else{
+          db.collection('goods').where({
+            goodsName: text
+          }).get({
+            success: function (res2) {
+              var list = res2.data;
+              that.setData({
+                searchGoods: list
+              })
+            }
+          })
+        }
+      }
+    })
+
+    that.setData({
+      inputVal: text
+    });
   }
+
 })

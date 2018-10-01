@@ -142,33 +142,79 @@ Page({
       return;
     }
 
-    wx.showLoading({
-      title: '提交中...',
-    })
-    
-    //订单存数据库
-    var nickName = wx.getStorageSync("userName") || app.globalData.openid;
-    var goods = wx.getStorageSync("cartItems");
-    var address = wx.getStorageSync("address");
-    var money = that.data.total;
-
-    db.collection('order').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        nickName: nickName,
-        goods: goods,
-        address: address,
-        money: money,
-        createTime: db.serverDate()
-      },
+    //指纹确认本人购买
+    wx.checkIsSoterEnrolledInDevice({
+      checkAuthMode: 'fingerPrint',
       success: function (res) {
-        var orderId = res._id;
-        //发送通知给店主
-        that.sendTemplateMessage(formid, app.globalData.openid, orderId, goods, money, address, that.data.wxNumber);
-      },
-      fail: console.error
-    })
+        // console.log(res.isEnrolled);
+         //有指纹信息
+        if (res.isEnrolled == 1) {
+          //开始指纹验证
+          wx.startSoterAuthentication({
+            requestAuthModes: ['fingerPrint'],
+            challenge: formid,
+            authContent: '请用指纹确认此次订单',
+            success(res) {
+              //指纹验证成功
+              wx.showLoading({
+                title: '提交中...',
+              })
 
+              //订单存数据库
+              var nickName = wx.getStorageSync("userName") || app.globalData.openid;
+              var goods = wx.getStorageSync("cartItems");
+              var address = wx.getStorageSync("address");
+              var money = that.data.total;
+
+              db.collection('order').add({
+                // data 字段表示需新增的 JSON 数据
+                data: {
+                  nickName: nickName,
+                  goods: goods,
+                  address: address,
+                  money: money,
+                  createTime: db.serverDate()
+                },
+                success: function (res) {
+                  var orderId = res._id;
+                  //发送通知给店主
+                  that.sendTemplateMessage(formid, app.globalData.openid, orderId, goods, money, address, that.data.wxNumber);
+                },
+                fail: console.error
+              })
+            }
+          })
+        }else{
+          //无指纹验证信息直接让用户下单
+          wx.showLoading({
+            title: '提交中...',
+          })
+
+          //订单存数据库
+          var nickName = wx.getStorageSync("userName") || app.globalData.openid;
+          var goods = wx.getStorageSync("cartItems");
+          var address = wx.getStorageSync("address");
+          var money = that.data.total;
+
+          db.collection('order').add({
+            // data 字段表示需新增的 JSON 数据
+            data: {
+              nickName: nickName,
+              goods: goods,
+              address: address,
+              money: money,
+              createTime: db.serverDate()
+            },
+            success: function (res) {
+              var orderId = res._id;
+              //发送通知给店主
+              that.sendTemplateMessage(formid, app.globalData.openid, orderId, goods, money, address, that.data.wxNumber);
+            },
+            fail: console.error
+          })
+        }
+      }
+    })
   },
 
   //地址管理
