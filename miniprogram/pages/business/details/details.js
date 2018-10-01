@@ -16,11 +16,14 @@ Page({
     curIndex: 0,
     show: false,
     scaleCart: false,
+    interval: 3000,
+    duration: 800,
 
     haveSpec:false,//是否选择规格
     specName:'',//已选择的规格
     visible: false,
     actions: [],//显示规格内容
+    swiperImgs:[]//存放商品轮播图
   },
 
   /**
@@ -29,12 +32,20 @@ Page({
   onLoad: function (options) {
     var that = this;
     var goodsId = options.goodsId;
+    var imgs = [];
+    var swiperImgs = [];
     //根据商品id获取商品信息
     db.collection('goods').doc(goodsId).get({
       success: function (res) {
+        swiperImgs.push(that.data.imgStaticPath + res.data.goodsIndexImg);
+        imgs = res.data.goodsImgs;
+        for (var i = 0; i < imgs.length; i++){
+          swiperImgs.push(that.data.imgStaticPath + imgs[i]);;
+        }
         that.setData({
           goods:res.data,
-          imgFullPath: that.data.imgStaticPath + res.data.goodsIndexImg
+          swiperImgs: swiperImgs
+          // imgFullPath: that.data.imgStaticPath + res.data.goodsIndexImg
         })
         var actions = [];
         var length = that.data.goods.goodsSpec.length;
@@ -210,17 +221,12 @@ Page({
     })
   },
 
-  showImg:function(){
+  showImg:function(e){
     var that = this;
-    var imgs = [];
-    imgs.push(that.data.imgFullPath);
-    var imglist = that.data.goods.goodsImgs;
-    for (var i = 0; i < imglist.length; i++){
-      var fullPath = that.data.imgStaticPath + imglist[i];
-      imgs.push(fullPath);
-    }
+    var current = that.data.swiperImgs[e.currentTarget.dataset.i];
     wx.previewImage({
-      urls: imgs,
+      urls: that.data.swiperImgs,
+      current: current
     })
   },
 
@@ -253,5 +259,11 @@ Page({
       specName: spec,
       goodsPrice: goodsPrice
     });
+  },
+
+  toCart:function(){
+    wx.switchTab({
+      url: '/pages/business/cart/cart',
+    })
   }
 })
