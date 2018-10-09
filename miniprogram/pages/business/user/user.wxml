@@ -49,7 +49,8 @@
         <view class="orders">我的订单</view>
         <i-cell-group>
           <view wx:if="{{orders.length > 0}}" wx:for="{{orders}}" wx:key="index">
-              <i-cell title="订单编号:{{item.id}}" is-link url="/pages/business/orderDetails/orderDetails?id={{item.id}}"></i-cell>
+              <i-cell title="订单编号:{{item.id}}" is-link url="/pages/business/orderDetails/orderDetails?id={{item.id}}" 
+              value="{{item.orderStatus}}"></i-cell>
           </view>
         </i-cell-group>
       </view>

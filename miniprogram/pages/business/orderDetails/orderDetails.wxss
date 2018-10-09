@@ -12,3 +12,8 @@
     display: inline-block;
     width: 300rpx;
 }
+.bottom-btn { 
+    width:100%; 
+    position:fixed; 
+    bottom:0; 
+} 

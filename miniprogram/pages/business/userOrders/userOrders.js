@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid:'',
     orders:[]
   },
 
@@ -17,22 +18,23 @@ Page({
   onLoad: function (options) {
     var that = this;
     var openid = options.openid;
-    db.collection('order').orderBy('createTime', 'desc').where({
-      _openid: openid
-    }).get({
-      success: function (res) {
-        var list = res.data;
-        var orders = [];
-        for(var i = 0; i < list.length; i++){
-          var order = list[i];
-          order.createTime = util.formatTime(order.createTime);
-          orders.push(order);
-        }
-        that.setData({
-          orders: orders
-        })
-      }
-    })
+    that.data.openid = openid;
+    // db.collection('order').orderBy('createTime', 'desc').where({
+    //   orderOpenid: openid
+    // }).get({
+    //   success: function (res) {
+    //     var list = res.data;
+    //     var orders = [];
+    //     for(var i = 0; i < list.length; i++){
+    //       var order = list[i];
+    //       order.createTime = util.formatTime(order.createTime);
+    //       orders.push(order);
+    //     }
+    //     that.setData({
+    //       orders: orders
+    //     })
+    //   }
+    // })
   },
 
   /**
@@ -46,7 +48,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    var openid = that.data.openid;
+    db.collection('order').orderBy('createTime', 'desc').where({
+      _openid: openid
+    }).get({
+      success: function (res) {
+        var list = res.data;
+        var orders = [];
+        for (var i = 0; i < list.length; i++) {
+          var order = list[i];
+          order.createTime = util.formatTime(order.createTime);
+          orders.push(order);
+        }
+        that.setData({
+          orders: orders
+        })
+      }
+    })
   },
 
   /**

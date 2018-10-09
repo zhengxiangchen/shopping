@@ -1,16 +1,19 @@
 const db = wx.cloud.database();
 const app = getApp();
 var util = require('../../../utils/util.js');
+const { $Message } = require('../../../dist/base/index');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    orderId:'',
     address:{},
     goods:[],
     createTime:"",
-    money:0
+    money:0,
+    orderStatus:''
   },
 
   /**
@@ -18,13 +21,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var orderStatus = '';
+    if (options.orderStatus != undefined){
+      orderStatus = options.orderStatus;
+    }
     var orderId = options.id;
     db.collection('order').doc(orderId).get({
       success: function (res) {
         var order = res.data;
         that.setData({
+          orderId: orderId,
           address: order.address,
           goods: order.goods,
+          orderStatus: orderStatus,
           createTime: util.formatTime(order.createTime)
         })
 
@@ -90,5 +99,33 @@ Page({
   },
 
 
-  
+  //修改订单状态--将未采购的订单变为已采购
+  updateOrderStatus:function(){
+    var that = this;
+    var orderId = that.data.orderId;
+    wx.showLoading({
+      title: '正在修改...',
+    })
+
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'updateOrderStatus',
+      // 传给云函数的参数
+      data: {
+        id: orderId
+      },
+      success: function (res) {
+        console.log(res.result)
+        wx.hideLoading();
+        $Message({
+          content: '订单状态：已采购',
+          type: 'success'
+        });
+        that.setData({
+          orderStatus: '已采购'
+        })
+      },
+      fail: console.error
+    })
+  }
 })

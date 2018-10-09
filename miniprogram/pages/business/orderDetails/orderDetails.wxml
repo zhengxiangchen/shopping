@@ -4,6 +4,7 @@
 <i-notice-bar>
   下单时间:{{createTime}}
 </i-notice-bar>
+<i-message id="message" />
 <view class="main">
   <view class="orders-address">
     <text class="orders-address-name">收货人: {{address.userName}}</text>
@@ -19,4 +20,8 @@
       <view slot="footer">总计：{{item.num * item.goodsPrice}}元</view>
     </i-card>
   </view>
+</view>
+
+<view wx:if="{{orderStatus == '未采购'}}">
+  <button class='bottom-btn' type="primary" bindtap='updateOrderStatus'>已采购</button>
 </view>

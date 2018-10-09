@@ -1,6 +1,7 @@
   <i-cell-group>
     <view wx:for="{{orders}}" wx:key="index">
       <i-cell title="下单时间:{{item.createTime}}" label="订单号:{{item._id}}" 
-      is-link url="/pages/business/orderDetails/orderDetails?id={{item._id}}"></i-cell>
+      is-link url="/pages/business/orderDetails/orderDetails?id={{item._id}}&orderStatus={{item.orderStatus}}" 
+      value="{{item.orderStatus}}"></i-cell>
     </view>
   </i-cell-group>

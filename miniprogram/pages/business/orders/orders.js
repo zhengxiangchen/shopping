@@ -173,6 +173,7 @@ Page({
                   goods: goods,
                   address: address,
                   money: money,
+                  orderStatus: '未采购',
                   createTime: db.serverDate()
                 },
                 success: function (res) {
@@ -203,6 +204,7 @@ Page({
               goods: goods,
               address: address,
               money: money,
+              orderStatus: '未采购',
               createTime: db.serverDate()
             },
             success: function (res) {

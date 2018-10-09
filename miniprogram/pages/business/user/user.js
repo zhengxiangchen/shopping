@@ -31,13 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var openid = app.globalData.openid;
-    if (openid == 'oDoIC0XEE-mz9G2Koj5Wem2uzajA' || openid == 'oDoIC0cnxdzY7fEKYJszf545xiO4'){
-      that.setData({
-        isAdmin:true
-      })
-    }
 
   },
 
@@ -53,6 +46,12 @@ Page({
    */
   onShow: function () {
     var that = this;
+    var openid = app.globalData.openid;
+    if (openid == 'oDoIC0XEE-mz9G2Koj5Wem2uzajA' || openid == 'oDoIC0cnxdzY7fEKYJszf545xiO4') {
+      that.setData({
+        isAdmin: true
+      })
+    }
     var address = wx.getStorageSync("address");
     if(address == ""){
       //数据库--获取地址信息
@@ -102,6 +101,7 @@ Page({
           oneOrder.name = name;
           oneOrder.num = num;
           oneOrder.money = list[i].money;
+          oneOrder.orderStatus = list[i].orderStatus;
           orders.push(oneOrder);
         }
 

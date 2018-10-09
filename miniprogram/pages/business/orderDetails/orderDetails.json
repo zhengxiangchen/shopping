@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "i-card": "../../../dist/card/index",
-    "i-notice-bar": "../../../dist/notice-bar/index"
+    "i-notice-bar": "../../../dist/notice-bar/index",
+    "i-message": "../../../dist/message/index"
   }
 }
