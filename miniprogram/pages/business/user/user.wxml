@@ -8,6 +8,11 @@
         <text class="about" bindtap='showWe'>关于我们</text>
     </view>
     <view class="address-box">
+        <view class="address-manage" bindtap='discussManager'>
+            <text>评论专区</text>
+        </view>
+    </view>
+    <view class="address-box">
         <view class="address-manage" bindtap='addressManager'>
             <text>地址管理</text>
         </view>

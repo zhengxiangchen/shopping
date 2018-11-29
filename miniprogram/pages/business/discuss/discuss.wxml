@@ -1,0 +1,3 @@
+<view class="WxComment">
+  <WxComment tipOne="你好 " tipTwo="请评论" submitBtnText="回复" articleID="{{discussId}}" contentLen='1' theme="light"></WxComment>
+</view>

@@ -14,7 +14,8 @@
     "pages/business/orderDetails/orderDetails",
     "pages/business/loginUserInfo/loginUserInfo",
     "pages/business/haveOrderUsers/haveOrderUsers",
-    "pages/business/userOrders/userOrders"
+    "pages/business/userOrders/userOrders",
+    "pages/business/discuss/discuss"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

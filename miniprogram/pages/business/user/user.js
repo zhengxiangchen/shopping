@@ -172,6 +172,13 @@ Page({
     })
   },
 
+  //评论专区
+  discussManager:function(){
+    wx.navigateTo({
+      url: '/pages/business/discuss/discuss',
+    })
+  },
+
   showWe:function(){
     this.setData({
       visible: true
