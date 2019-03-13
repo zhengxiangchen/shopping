@@ -110,7 +110,7 @@ App({
           }
         })
         wx.switchTab({
-          url: '/pages/business/index/index',
+           url: '/pages/business/index/index',
         })
       },
       fail: function () {

@@ -273,7 +273,7 @@ Page({
       goodsNumber = goodsNumber + goods[i].num;
     }
     wx.request({
-      url: "https://www.gzitrans.cn/api_v1/mini/sendTempMsg/send",
+      url: "http://suparking.ngrok.xiaomiqiu.cn/mini/api/sendTempMsg",
       data:{
         formid: formid,
         openid: openid,
